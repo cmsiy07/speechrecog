@@ -282,9 +282,9 @@ def process_eval(model,data_path,data_list,index2char,save_path=None):
         # read the wav file and convert to PyTorch format
         audio, sample_rate = soundfile.read(os.path.join(data_path, file['file']))
         # < fill your code here >
+        x = torch.tensor(audio).unsqueeze(0) 
 
-        # load x and y 
-        x = audio
+
 
 
         # forward pass through the model
