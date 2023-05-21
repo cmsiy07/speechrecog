@@ -284,8 +284,8 @@ def process_eval(model,data_path,data_list,index2char,save_path=None):
         # < fill your code here >
 
         # load x and y 
-        x = audio[0].cuda()
-        y = audio[1].cuda()
+        x = audio.cuda()
+        y = audio.cuda()
 
         # forward pass through the model
         # < fill your code here >
