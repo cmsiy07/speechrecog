@@ -60,7 +60,7 @@ class SpeechDataset(torch.utils.data.Dataset):
         # < fill your code here >
         print("self.dataset_path", self.dataset_path)
         print("self.char2index", self.char2index)
-        audio = soundfile.read(self.dataset_path,)
+        audio = soundfile.read(self.data['file'])
         audio, sample_rate = soundfile.read(os.path.join(self.dataset_path, file['file']))
 
         
