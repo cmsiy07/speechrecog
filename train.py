@@ -59,7 +59,8 @@ class SpeechDataset(torch.utils.data.Dataset):
         # read audio using soundfile.read
         # < fill your code here >
         audio = soundfile.read(self.dataset_path)
-        print(audio)
+        audio, sample_rate = soundfile.read(os.path.join(self.dataset_path, file['file']))
+
         
         # read transcript and convert to indices
         transcript = self.data[index]['text']
@@ -249,6 +250,9 @@ class GreedyCTCDecoder(torch.nn.Module):
         """
         
         # < fill your code here >
+        indices = torch.argmax(emission, dim = -1)
+        indices = np.array(indices)
+        indices = [i for i in indices if i!=self.blank]
 
         return indices
 
@@ -276,12 +280,21 @@ def process_eval(model,data_path,data_list,index2char,save_path=None):
         # read the wav file and convert to PyTorch format
         audio, sample_rate = soundfile.read(os.path.join(data_path, file['file']))
         # < fill your code here >
+        
+        # load x and y 
+        x = audio[0].cuda()
+        y = audio[1].cuda()
 
         # forward pass through the model
         # < fill your code here >
+        with torch.no_grad():
+            output = model(x)
+            output = torch.nn.functional.log_softmax(output, dim=2)
+            output =output.transpose(0,1)
 
         # decode using the greedy decoder
         # < fill your code here >
+        pred = greedy_decoder(output.cpu().detach().squeeze())
 
         # convert to text
         out_text = ''.join([index2char[x] for x in pred])
