@@ -45,7 +45,7 @@ class SpeechDataset(torch.utils.data.Dataset):
         # convert seconds to frames
         max_length *= 16000
 
-        # sort data in length order and filter data less than max_length
+        # sort data in length order and filter data lessƒ than max_length
         data = sorted(data, key=lambda d: d['len'], reverse=True)
         self.data = [x for x in data if x['len'] <= max_length]
 
@@ -56,6 +56,8 @@ class SpeechDataset(torch.utils.data.Dataset):
 
         # read audio using soundfile.read
         # < fill your code here >
+        audio = soundfile.read(self.dataset_path)
+        print(audio)
         
         # read transcript and convert to indices
         transcript = self.data[index]['text']
@@ -79,12 +81,12 @@ def pad_collate(batch):
     (xx, yy) = zip(*batch)
 
     ## compute lengths of each item in xx and yy
-    x_lens = # < fill your code here >
-    y_lens = # < fill your code here >
+    x_lens = [len(x) for x in xx]
+    y_lens = [len(y) for y in yy]
 
     ## zero-pad to the longest length
-    xx_pad = # < fill your code here >
-    yy_pad = # < fill your code here >
+    xx_pad = torch.nn.utils.rnn.pad_sequence(xx, batch_first = True, padding_value = 0)
+    yy_pad = torch.nn.utils.rnn.pad_sequence(yy, batch_first = True, padding_value = 0)
 
     return xx_pad, yy_pad, x_lens, y_lens
 
@@ -145,6 +147,7 @@ class SpeechRecognitionModel(nn.Module):
 
         ## define RNN layers as self.lstm - use a 3-layer bidirectional LSTM with 256 output size and 0.1 dropout
         # < fill your code here >
+        self.lstm = nn.LSTM(32,256,1, bidirectional=True, dropout=0.1, batch_first = True)
 
         ## define the fully connected layer
         self.classifier = nn.Linear(512,n_classes)
@@ -160,13 +163,13 @@ class SpeechRecognitionModel(nn.Module):
           x = self.instancenorm(x).detach()
 
         ## pass the network through the CNN layers
-        # < fill your code here >
+        x = self.cnns(x)
 
         ## pass the network through the RNN layers - check the input dimensions of nn.LSTM()
-        # < fill your code here >
+        x = self.lstm(x.transpose(1,2))[0]
 
         ## pass the network through the classifier
-        # < fill your code here >
+        x = self.classifier(x)
 
         return x
 
@@ -178,9 +181,9 @@ def process_epoch(model,loader,criterion,optimizer,trainmode=True):
 
     # Set the model to training or eval mode
     if trainmode:
-        # < fill your code here >
+        model.train()
     else:
-        # < fill your code here >
+        model.eval()
 
     ep_loss = 0
     ep_cnt  = 0
@@ -202,6 +205,12 @@ def process_epoch(model,loader,criterion,optimizer,trainmode=True):
 
             if trainmode:
               # < fill your code here >
+              ## Backward pass
+                loss.backward()
+
+                ## Optimizer step
+                optimizer.step()
+                optimizer.zero_grad()
 
             # keep running average of loss
             ep_loss += loss.item() * len(x)
