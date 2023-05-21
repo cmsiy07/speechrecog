@@ -267,7 +267,7 @@ def process_eval(model,data_path,data_list,index2char,save_path=None):
 
     # set model to evaluation mode
     model.eval()
-    model.to(torch.double)
+    #model.to(torch.double)
 
 
     # initialise the greedy decoder
