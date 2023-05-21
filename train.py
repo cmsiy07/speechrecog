@@ -13,6 +13,8 @@ import numpy as np
 import editdistance
 import pickle
 from tqdm import tqdm
+import torch.optim as optim
+
 
 ## ===================================================================
 ## Load labels
@@ -367,6 +369,8 @@ def main():
 
     ## define the optimizer with args.lr learning rate and appropriate weight decay
     # < fill your code here >
+    optimizer = optim.Adam(model.parameters(), lr=args.lr, weight_decay=1e-5)
+
 
     ## set loss function with blank index
     # < fill your code here >
