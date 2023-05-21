@@ -369,11 +369,11 @@ def main():
 
     ## define the optimizer with args.lr learning rate and appropriate weight decay
     # < fill your code here >
-    optimizer = optim.Adam(model.parameters(), lr=args.lr, weight_decay=1e-5)
+    optimizer = optim.Adam(model.parameters(), lr=(args.lr/1000), weight_decay=1e-5)
 
 
     ## set loss function with blank index
-    # < fill your code here >
+    ctcloss = nn.CTCLoss(blank=10).cuda()
 
     ## initialise training log file
     f_log = open(os.path.join(args.save_path,'train.log'),'a+')
@@ -384,6 +384,11 @@ def main():
     for epoch in range(0, args.max_epoch):
 
         # < fill your code here >
+        print('Training epoch', epoch)
+        tloss = process_epoch(model,trainloader,ctcloss,trainmode=True)
+
+        print('Validating epoch', epoch)
+        vloss = process_epoch(model,valloader,ctcloss,trainmode=False)
 
         # save checkpoint to file
         save_file = '{}/model{:05d}.pt'.format(args.save_path,epoch)
