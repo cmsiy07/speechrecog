@@ -282,12 +282,12 @@ def process_eval(model,data_path,data_list,index2char,save_path=None):
         # read the wav file and convert to PyTorch format
         audio, sample_rate = soundfile.read(os.path.join(data_path, file['file']))
         # < fill your code here >
-        x = torch.tensor(audio).unsqueeze(0).cuda() 
+        x = torch.tensor(audio).unsqueeze(0)
 
         # forward pass through the model
         # < fill your code here >
         with torch.no_grad():
-            output = model(x)
+            output = model(x.cuda())
             output = torch.nn.functional.log_softmax(output, dim=2)
             output =output.transpose(0,1)
 
