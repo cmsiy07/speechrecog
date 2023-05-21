@@ -58,6 +58,7 @@ class SpeechDataset(torch.utils.data.Dataset):
 
         # read audio using soundfile.read
         # < fill your code here >
+        print("self.dataset_path", self.dataset_path)
         audio = soundfile.read(self.dataset_path)
         audio, sample_rate = soundfile.read(os.path.join(self.dataset_path, file['file']))
 
@@ -280,7 +281,7 @@ def process_eval(model,data_path,data_list,index2char,save_path=None):
         # read the wav file and convert to PyTorch format
         audio, sample_rate = soundfile.read(os.path.join(data_path, file['file']))
         # < fill your code here >
-        
+
         # load x and y 
         x = audio[0].cuda()
         y = audio[1].cuda()
