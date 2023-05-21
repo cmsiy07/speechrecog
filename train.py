@@ -152,7 +152,7 @@ class SpeechRecognitionModel(nn.Module):
 
         ## define RNN layers as self.lstm - use a 3-layer bidirectional LSTM with 256 output size and 0.1 dropout
         # < fill your code here >
-        self.lstm = nn.LSTM(32,256,1, bidirectional=True, dropout=0.1, batch_first = True)
+        self.lstm = nn.LSTM(64,256,1, bidirectional=True, dropout=0.1, batch_first = True)
 
         ## define the fully connected layer
         self.classifier = nn.Linear(512,n_classes)
