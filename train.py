@@ -201,6 +201,16 @@ def process_epoch(model,loader,criterion,optimizer,trainmode=True):
 
             # < fill your code here >
 
+            ## Add some noise to x 
+            x = x + torch.normal(mean=0,std=torch.std(x)*1e-3,size=x.shape).cuda()
+      
+            ## Forward pass
+            output = model(x)
+
+            ## Take the log softmax - the output must be in (time, batch, n_class) order
+            output = torch.nn.functional.log_softmax(output, dim=2)
+            output = output.transpose(0,1)
+
             ## compute the loss using the CTC objective
             x_len = torch.LongTensor([output.size(0)]).repeat(output.size(1))
             loss = criterion(output, y, x_len, y_len)
