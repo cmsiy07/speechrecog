@@ -395,10 +395,10 @@ def main():
 
         # < fill your code here >
         print('Training epoch', epoch)
-        tloss = process_epoch(model,trainloader,ctcloss,trainmode=True)
+        tloss = process_epoch(model,trainloader,ctcloss,optimizer,trainmode=True)
 
         print('Validating epoch', epoch)
-        vloss = process_epoch(model,valloader,ctcloss,trainmode=False)
+        vloss = process_epoch(model,valloader,ctcloss,optimizer,trainmode=False)
 
         # save checkpoint to file
         save_file = '{}/model{:05d}.pt'.format(args.save_path,epoch)
