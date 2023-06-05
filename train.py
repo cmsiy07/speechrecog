@@ -267,6 +267,8 @@ def process_eval(model,data_path,data_list,index2char,save_path=None):
 
     # set model to evaluation mode
     model.eval()
+    #model.to(torch.double)
+
 
     # initialise the greedy decoder
     greedy_decoder = GreedyCTCDecoder(blank=len(index2char))
@@ -282,15 +284,13 @@ def process_eval(model,data_path,data_list,index2char,save_path=None):
         # read the wav file and convert to PyTorch format
         audio, sample_rate = soundfile.read(os.path.join(data_path, file['file']))
         # < fill your code here >
-
-        # load x and y 
-        x = audio[0].cuda()
-        y = audio[1].cuda()
+        x = torch.FloatTensor(audio).unsqueeze(0)
+        #x.double()
 
         # forward pass through the model
         # < fill your code here >
         with torch.no_grad():
-            output = model(x)
+            output = model(x.cuda())
             output = torch.nn.functional.log_softmax(output, dim=2)
             output =output.transpose(0,1)
 
@@ -395,7 +395,7 @@ def main():
 
     ## define the optimizer with args.lr learning rate and appropriate weight decay
     # < fill your code here >
-    optimizer = optim.Adam(model.parameters(), lr=(args.lr/1000), weight_decay=1e-5)
+    optimizer = optim.Adam(model.parameters(), lr=(args.lr), weight_decay=1e-5)
 
 
     ## set loss function with blank index
