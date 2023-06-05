@@ -1,0 +1,22 @@
+Namespace(max_length=10, train_list='../../SpeechRecog/ee738_2023_filelist/ks_train.json', val_list='../../SpeechRecog/ee738_2023_filelist/ks_val.json', labels_path='../../SpeechRecog/ee738_2023_filelist/label.json', train_path='../../SpeechRecog/kspon_train', val_path='../../SpeechRecog/kspon_eval', max_epoch=10, batch_size=50, lr=1, seed=2222, initial_model='', save_path='~/speechrecog/test', eval=False)
+Epoch 000, train loss 3.535, val loss 1.966
+Epoch 001, train loss 1.635, val loss 1.566
+Epoch 002, train loss 1.449, val loss 1.564
+Epoch 003, train loss 1.361, val loss 1.352
+Epoch 004, train loss 1.240, val loss 1.303
+Epoch 005, train loss 1.176, val loss 1.241
+Epoch 006, train loss 1.126, val loss 1.334
+Epoch 007, train loss 1.083, val loss 1.155
+Epoch 008, train loss 1.059, val loss 1.144
+Epoch 009, train loss 1.027, val loss 1.124
+Namespace(max_length=10, train_list='../../SpeechRecog/ee738_2023_filelist/ks_train.json', val_list='../../SpeechRecog/ee738_2023_filelist/ks_val.json', labels_path='../../SpeechRecog/ee738_2023_filelist/label.json', train_path='../../SpeechRecog/kspon_train', val_path='../../SpeechRecog/kspon_eval', max_epoch=10, batch_size=50, lr=0.0001, seed=2222, initial_model='', save_path='~/speechrecog/test', eval=False)
+Epoch 000, train loss 4.915, val loss 3.864
+Epoch 001, train loss 2.488, val loss 2.135
+Epoch 002, train loss 1.790, val loss 1.760
+Epoch 003, train loss 1.537, val loss 1.579
+Epoch 004, train loss 1.394, val loss 1.446
+Epoch 005, train loss 1.297, val loss 1.399
+Epoch 006, train loss 1.224, val loss 1.320
+Epoch 007, train loss 1.166, val loss 1.260
+Epoch 008, train loss 1.120, val loss 1.233
+Epoch 009, train loss 1.086, val loss 1.193

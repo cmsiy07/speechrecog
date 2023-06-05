@@ -1,0 +1,14 @@
+Namespace(max_length=10, train_list='../../SpeechRecog/ee738_2023_filelist/ks_train.json', val_list='../../SpeechRecog/ee738_2023_filelist/ks_val.json', labels_path='../../SpeechRecog/ee738_2023_filelist/label.json', train_path='../../SpeechRecog/kspon_train', val_path='../../SpeechRecog/kspon_eval', max_epoch=10, batch_size=50, lr=0.0001, seed=2222, initial_model='', save_path='test', eval=False)
+Namespace(max_length=10, train_list='../../SpeechRecog/ee738_2023_filelist/ks_train.json', val_list='../../SpeechRecog/ee738_2023_filelist/ks_val.json', labels_path='../../SpeechRecog/ee738_2023_filelist/label.json', train_path='../../SpeechRecog/kspon_train', val_path='../../SpeechRecog/kspon_eval', max_epoch=10, batch_size=50, lr=0.0001, seed=2222, initial_model='', save_path='test', eval=False)
+Namespace(max_length=10, train_list='../../SpeechRecog/ee738_2023_filelist/ks_train.json', val_list='../../SpeechRecog/ee738_2023_filelist/ks_val.json', labels_path='../../SpeechRecog/ee738_2023_filelist/label.json', train_path='../../SpeechRecog/kspon_train', val_path='../../SpeechRecog/kspon_eval', max_epoch=10, batch_size=50, lr=0.0001, seed=2222, initial_model='', save_path='test', eval=False)
+Namespace(max_length=10, train_list='../../SpeechRecog/ee738_2023_filelist/ks_train.json', val_list='../../SpeechRecog/ee738_2023_filelist/ks_val.json', labels_path='../../SpeechRecog/ee738_2023_filelist/label.json', train_path='../../SpeechRecog/kspon_train', val_path='../../SpeechRecog/kspon_eval', max_epoch=10, batch_size=50, lr=0.0001, seed=2222, initial_model='', save_path='test', eval=False)
+Epoch 000, train loss 4.960, val loss 3.946
+Epoch 001, train loss 2.536, val loss 2.222
+Epoch 002, train loss 1.817, val loss 1.823
+Epoch 003, train loss 1.553, val loss 1.637
+Epoch 004, train loss 1.417, val loss 1.492
+Epoch 005, train loss 1.315, val loss 1.404
+Epoch 006, train loss 1.235, val loss 1.351
+Epoch 007, train loss 1.188, val loss 1.301
+Epoch 008, train loss 1.141, val loss 1.245
+Epoch 009, train loss 1.096, val loss 1.201

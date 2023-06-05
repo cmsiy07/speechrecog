@@ -325,7 +325,8 @@ def process_eval(model,data_path,data_list,index2char,save_path=None):
 def main():
 
     parser = argparse.ArgumentParser(description='EE738 Exercise')
-
+    #..\SpeechRecog\ee738filelist
+    #/home/EE728
     ## related to data loading
     parser.add_argument('--max_length', type=int, default=10,   help='maximum length of audio file in seconds')
     parser.add_argument('--train_list', type=str, default='/home/EE738/ks_train.json')
